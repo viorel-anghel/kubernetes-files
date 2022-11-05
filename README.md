@@ -1,1 +1,3 @@
-# kubernetes-files
+# Support files for Kubernetes course
+
+
