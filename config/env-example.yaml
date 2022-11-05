@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: env-example
+spec:
+  containers:
+    - name: alping
+      image: alpine:3.11
+      command: [ "ping", "127.0.0.1" ]
+      env:
+        - name: VAR1
+          value: "hello"
+        - name: VAR2
+          value: "World!"
+
