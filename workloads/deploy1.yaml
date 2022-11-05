@@ -1,0 +1,22 @@
+# deploy1.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alping-deployment
+  labels:
+    app: alping
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: alping
+  template:
+    metadata:
+      labels:
+        app: alping
+    spec:
+      containers:
+        - name: alping
+          image: alpine:3.11
+          command: [ "ping", "127.0.0.1" ]
+
