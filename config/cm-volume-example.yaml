@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-vol-demo
+data:
+  # simple values
+  value1: "1"
+  value2: "2"
+  # multi line config file
+  config_file: |
+    some lines
+    in a demo
+    config file
+
+---
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: cm-demo
+spec:
+  volumes:
+    - name: config
+      configMap:
+        name: cm-demo
+  containers:
+    - name: dummy
+      image: dummy:0.0
+      volumeMounts: 
+        - name: config
+          mountPath: /config
+          readOnly: true
+
