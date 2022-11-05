@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-example
+data:
+  varA: "hello"
+  varB: "World!"
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cm-example
+spec:
+  containers:
+    - name: alping
+      image: alpine:3.11
+      command: [ "ping", "127.0.0.1" ]
+      env:
+        - name: VAR1
+          valueFrom: 
+            configMapKeyRef:
+              name: cm-example
+              key: varA
+        - name: VAR2
+          valueFrom: 
+            configMapKeyRef:
+              name: cm-example
+              key: varB
+
