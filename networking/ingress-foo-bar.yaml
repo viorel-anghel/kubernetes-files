@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: foo-bar
 spec:
+  ingressClassName: nginx
   rules:
   - host: "foo.example.com"
     http:
@@ -21,7 +22,7 @@ spec:
         path: "/"
         backend:
           service:
-            name: bar.bar
+            name: bar
             port:
               number: 80
 

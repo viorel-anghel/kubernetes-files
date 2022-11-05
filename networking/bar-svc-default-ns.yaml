@@ -1,0 +1,9 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: bar
+  namespace: default
+spec:
+  type: ExternalName
+  externalName: bar.bar
+
