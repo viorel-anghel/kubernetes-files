@@ -17,15 +17,15 @@ data:
 kind: Pod
 apiVersion: v1
 metadata:
-  name: cm-demo
+  name: cm-vol-demo
 spec:
   volumes:
     - name: config
       configMap:
-        name: cm-demo
+        name: cm-vol-demo
   containers:
     - name: dummy
-      image: dummy:0.0
+      image: vvang/dummy:x86
       volumeMounts: 
         - name: config
           mountPath: /config
