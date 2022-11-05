@@ -1,0 +1,55 @@
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bar
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: bar
+  namespace: bar
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: bar
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: bar
+ namespace: bar
+spec:
+ replicas: 2
+ selector:
+   matchLabels:
+     app: bar
+ template:
+   metadata:
+    labels:
+      app: bar
+   spec:
+     containers:
+     - name: c1
+       image: vvang/dummy:x86
+       livenessProbe:
+         initialDelaySeconds: 10
+         periodSeconds: 3
+         httpGet:
+           path: /
+           port: 8080
+       readinessProbe:
+         initialDelaySeconds: 10
+         periodSeconds: 3
+         httpGet:
+           path: /
+           port: 8080
+
+
