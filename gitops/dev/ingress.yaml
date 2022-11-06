@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: "foo.example.com"
+  - host: "foo-dev.example.com"
     http:
       paths:
       - pathType: Prefix
