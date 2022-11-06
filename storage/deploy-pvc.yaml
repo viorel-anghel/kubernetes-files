@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: deploy-pvc
+spec:
+  storageClassName: nfs-rwx-storage
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Mi
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-pvc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: deploy-pvc
+  template:
+    metadata:
+      labels:
+        app: deploy-pvc
+    spec:
+      volumes:
+        - name: vol1
+          persistentVolumeClaim:
+            claimName: deploy-pvc
+      containers:
+        - name: alping
+          image: alpine:3.11
+          command: [ "ping", "127.0.0.1" ]
+          volumeMounts:
+            - name: vol1
+              mountPath: /data
+
