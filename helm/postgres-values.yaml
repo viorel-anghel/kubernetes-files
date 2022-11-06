@@ -12,5 +12,13 @@ primary:
   resources:
     requests:
       memory: 100Mi
-      cpu: 100m
+      cpu: 10m
+readReplicas:
+  count: 1
+  persistence:
+    size: 1Gi
+  resources:
+    requests:
+      memory: 100Mi
+      cpu: 10m
 
