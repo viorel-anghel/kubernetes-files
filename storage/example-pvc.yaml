@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc1
+spec:
+#  storageClassName: do-block-storage
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: example-pod-pvc
+spec:
+  volumes:
+  - name: vol1
+    persistentVolumeClaim:
+      claimName: pvc1
+
+  containers:
+  - name: vol1
+    image: alpine
+    command: [ "ping", "127.0.0.1" ]
+    volumeMounts:
+    - name: vol1
+      mountPath: /data
+
