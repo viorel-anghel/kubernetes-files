@@ -1,0 +1,21 @@
+# hostpath is used to access the NODE filesystem
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: example-hostpath
+spec:
+
+  volumes:
+  - name: vol1
+    hostPath: 
+      path: /
+
+  containers:
+  - name: c1
+    image: alpine
+    command: [ "ping", "127.0.0.1" ]
+    volumeMounts:
+    - name: vol1
+      mountPath: /mnt
+
