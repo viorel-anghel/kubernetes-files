@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ds-demo
+spec:
+  selector:
+    matchLabels:
+      name: ds-demo
+  template:
+    metadata:
+      labels:
+        name: ds-demo
+    spec:
+      volumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+
+      containers:
+      - name: ds1
+        image: alpine
+        command: [ "ping", "127.0.0.1" ]       
+        volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+
