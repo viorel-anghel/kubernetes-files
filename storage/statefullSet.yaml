@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sts-demo
+spec:
+  replicas: 2
+  serviceName: svc1
+  selector:
+    matchLabels:
+      app: sts-demo
+  template:
+    metadata:
+      labels:
+        app: sts-demo
+    spec:
+      containers:
+        - name: alping
+          image: alpine:3.11
+          command: [ "ping", "127.0.0.1" ]
+          volumeMounts:
+            - name: vol1
+              mountPath: /data
+  volumeClaimTemplates:
+    - metadata:
+        name: vol1
+      spec:
+        accessModes: 
+          - ReadWriteOnce
+#       storageClassName: do-block-storage
+        resources:
+          requests:
+            storage: 1Gi
+
