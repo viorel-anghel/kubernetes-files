@@ -1,0 +1,33 @@
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: example-initcontainer
+spec:
+
+  volumes:
+  - name: vol1
+    emptyDir: {}
+
+  initContainers:
+  - name: init1
+    image: alpine
+    command: ['sh', '-c', 'mkdir /data/storage; touch /data/storage/f1']
+    volumeMounts:
+    - name: vol1
+      mountPath: /data
+
+  containers:
+  - name: c1
+    image: alpine
+    command: [ "ping", "127.0.0.1" ]
+    volumeMounts:
+    - name: vol1
+      mountPath: /data
+
+  - name: c2
+    image: nginx
+    volumeMounts:
+    - name: vol1
+      mountPath: /data-nginx
+
