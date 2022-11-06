@@ -1,0 +1,19 @@
+namespace: kdev
+bases:
+- ../../base
+
+resources:
+- namespace.yaml
+
+patchesStrategicMerge:
+- deploy.yaml
+
+patches:
+- target:
+    kind: Ingress
+    name: foo
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: "foo-kdev.example.com"
+
