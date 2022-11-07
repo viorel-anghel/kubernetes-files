@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dummy
+spec:
+  containers:
+  - image: vvang/dummy:86
+    name: c1
+
