@@ -4,6 +4,6 @@ metadata:
   name: dummy
 spec:
   containers:
-  - image: vvang/dummy:86
+  - image: vvang/dummy:x86
     name: c1
 
