@@ -12,7 +12,6 @@ COPY index.html  /var/www/html/
 COPY docker-entrypoint.sh /
 RUN chmod 755 /docker-entrypoint.sh
 
-EXPOSE 80
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
 # eof
 
