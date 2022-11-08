@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foxy
+  namespace: foxy
+spec:
+ replicas: 2
+ selector:
+   matchLabels:
+     app: foxy
+ template:
+   metadata:
+    labels:
+      app: foxy
+   spec:
+     containers:
+     - name: c1
+       image: vvang/dummy:x86
+       env:
+         - name: TEXT
+           value: foxy-the-cat
+       livenessProbe:
+         initialDelaySeconds: 10
+         periodSeconds: 5
+         httpGet:
+           path: /
+           port: 8080
+       readinessProbe:
+         initialDelaySeconds: 10
+         periodSeconds: 5
+         httpGet:
+           path: /
+           port: 8080
+       resources:
+         requests:
+           cpu: "10m"
+           memory: "32Mi"
+

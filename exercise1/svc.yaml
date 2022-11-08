@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: foxy
+  namespace: foxy
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: foxy
+
