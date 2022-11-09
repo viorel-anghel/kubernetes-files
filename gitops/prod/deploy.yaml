@@ -4,7 +4,7 @@ metadata:
  name: foo
  namespace: prod
 spec:
- replicas: 2
+ replicas: 4
  selector:
    matchLabels:
      app: foo
