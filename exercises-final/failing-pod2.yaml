@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: failing-pod2
+  name: failing-pod2
+spec:
+  volumes:
+    - name: vol1
+      emptyDir: {}
+
+  initContainers:
+    - name: init1
+      image: alpine
+      command: 
+        - /bin/sh
+        - -c
+        - mkdir /tmp/date
+      volumeMounts:
+        - name: vol1
+          mountPath: /tmp
+
+  containers:
+  - args:
+    - /bin/sh
+    - -c
+    - while true; do echo $(date) >> /tmp/date/curr-date.txt; sleep
+      10; done;
+    image: busybox
+    name: failing-pod
+    volumeMounts:
+      - name: vol1
+        mountPath: /tmp
+  restartPolicy: Never
+
+

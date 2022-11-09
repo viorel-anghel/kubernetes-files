@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: failing-pod
+  name: failing-pod
+spec:
+  containers:
+  - args:
+    - /bin/sh
+    - -c
+    - while true; do echo $(date) >> /tmp/date/curr-date.txt; sleep
+      10; done;
+    image: busybox
+    name: failing-pod
+  restartPolicy: Never
+
