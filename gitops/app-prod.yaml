@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+    name: app1-prod
+    namespace: argocd
+spec:
+  destination:
+    namespace: prod
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: gitops/prod
+    repoURL: https://github.com/viorel-anghel/kubernetes-files.git
+    targetRevision: HEAD
+#  syncPolicy:
+#    automated:
+#      selfHeal: true
+

@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+    name: app1-kdev
+    namespace: argocd
+spec:
+  destination:
+    namespace: kdev
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: gitops/overlays/dev
+    repoURL: https://github.com/viorel-anghel/kubernetes-files.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      selfHeal: true
+
