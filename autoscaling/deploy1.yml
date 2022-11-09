@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hugeapp
+  labels:
+    app: hugeapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hugeapp
+  template:
+    metadata:
+      labels:
+        app: hugeapp
+    spec:
+      containers:
+        - name: dummy
+          image: vvang/autoscaling-demo:0.3
+          resources:
+            requests:
+              cpu: 1
+              memory: 1Mi
+            limits:
+              memory: 20Mi
+

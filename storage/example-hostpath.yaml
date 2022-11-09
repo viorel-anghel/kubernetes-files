@@ -5,7 +5,7 @@ kind: Pod
 metadata:
   name: example-hostpath
 spec:
-
+  nodeName: curs0-default-pool-mn1ny
   volumes:
   - name: vol1
     hostPath: 

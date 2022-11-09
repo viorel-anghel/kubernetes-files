@@ -1,7 +1,7 @@
 apiVersion: "acid.zalan.do/v1"
 kind: postgresql
 metadata:
-  name: acid-minimal-cluster
+  name: acid-minimal-cluster2
   namespace: default
 spec:
   teamId: "acid"

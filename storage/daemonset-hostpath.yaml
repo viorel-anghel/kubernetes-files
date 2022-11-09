@@ -18,7 +18,7 @@ spec:
 
       containers:
       - name: ds1
-        image: alpine
+        image: alpine:3.11
         command: [ "ping", "127.0.0.1" ]       
         volumeMounts:
         - name: varlog
