@@ -14,7 +14,7 @@ spec:
    spec:
      containers:
      - name: c1
-       image: vvang/dummy:x86
+       image: vvang/dummy:0.3
        livenessProbe:
          initialDelaySeconds: 10
          periodSeconds: 3
