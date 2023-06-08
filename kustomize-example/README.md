@@ -15,3 +15,10 @@ Running
 
 will show the resulting yaml manifests.
 
+To use kubectl directly, the syntax is something like:
+```
+    kubectl apply -k overlays/dev --dry-run=client -o yaml  # show only
+# or
+    kubectl apply -k overlays/dev  # really apply
+```
+
